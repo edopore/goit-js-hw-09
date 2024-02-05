@@ -41,6 +41,13 @@ function checkDates(date) {
   }
 }
 
+function addLeadingZero(value) {
+  if (value < 10) {
+    return value.toString().padStart(2, '0');
+  }
+  return value.toString();
+}
+
 flatpickr('#datetime-picker', options);
 
 const startButton = document.querySelector('button');
@@ -57,17 +64,10 @@ startButton.addEventListener('click', () => {
   setInterval(() => {
     let newTime = setTimeCounter - Date.now();
     let { days, hours, minutes, seconds } = convertMs(newTime);
-    timePrint[0].innerText =
-      days + 1 < 10 ? '0' + (days + 1).toString() : (days + 1).toString();
-    timePrint[1].innerText =
-      hours + 1 < 10 ? '0' + (hours + 1).toString() : (hours + 1).toString();
-    timePrint[2].innerText =
-      minutes + 1 < 10
-        ? '0' + (minutes + 1).toString()
-        : (minutes + 1).toString();
-    timePrint[3].innerText =
-      seconds + 1 < 10
-        ? '0' + (seconds + 1).toString()
-        : (seconds + 1).toString();
+
+    timePrint[0].innerText = addLeadingZero(days);
+    timePrint[1].innerText = addLeadingZero(hours);
+    timePrint[2].innerText = addLeadingZero(minutes);
+    timePrint[3].innerText = addLeadingZero(seconds);
   }, 1000);
 });
