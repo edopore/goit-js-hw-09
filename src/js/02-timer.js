@@ -57,10 +57,9 @@ const timePrint = document.getElementsByClassName('value');
 startButton.setAttribute('disabled', '');
 
 startButton.addEventListener('click', () => {
-  console.log('Click on start button');
   let setTimeCounter = new Date(dateInput.value).getTime();
-  console.log('Selected date in ms: ', setTimeCounter);
-
+  startButton.setAttribute('disabled', '');
+  dateInput.setAttribute('disabled', '');
   setInterval(() => {
     let newTime = setTimeCounter - Date.now();
     let { days, hours, minutes, seconds } = convertMs(newTime);
