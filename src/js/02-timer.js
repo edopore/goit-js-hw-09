@@ -1,7 +1,7 @@
-// Descrito en la documentación
 import flatpickr from 'flatpickr';
-// Importación adicional de estilos
 import 'flatpickr/dist/flatpickr.min.css';
+
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const options = {
   enableTime: true,
@@ -36,7 +36,7 @@ function checkDates(date) {
   if (date > Date.now()) {
     startButton.removeAttribute('disabled');
   } else {
-    alert('Please select a date in the future');
+    Notify.failure('Please select a date in the future');
     startButton.setAttribute('disabled', '');
   }
 }
